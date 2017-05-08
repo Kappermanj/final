@@ -1,63 +1,78 @@
-<!doctype html>
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-<html lang="en">
 <head>
-	<meta charset="utf-8">
-
-	<meta name="description" content="HTML5 Template">
-
-	
 <style>
-.light {
-  height: 120px;
-  width : 120px;
-  border-radius: 50%;
-  opacity : 0.3; /* makes colors less bright by default */
-  margin: 0 auto;
-  display: inline-block;
+
+body{
+    background-image:url('Images/duckstadium.png');
+    background-repeat:no-repeat;
+    background-position:center top;
 }
 
-.stop {background-color: red;}
-.go {background-color: green;}
-.on {opacity: 1;}
-
-body {
-  background-color : grey;
-  text-align: center;
-  color :white;
-  font-family: Helvetica;
-}
 </style>
-	
-
- <h2>Click the green light to start the race!</h2>
-
-<div onclick="switchLight(0)" class="light stop on" ></div>
-<div onclick="switchLight(2)" class="light go" ></div>
-
-
 <script>
-/* This line gets all the HTML elements with class="light" and assigns them to a variable called LIGHTS. */
-var LIGHTS = document.getElementsByClassName("light");
 
-/* This defines a function which turns off every light by removing the "on" class from the HTML elements.*/
-function allOff() {
-  for (var i=0; i<LIGHTS.length; i = i+1) {
-    LIGHTS[i].classList.remove("on");
+var randleng;
+
+function resetRace(){
+window.location.reload();
+}
+//CHANGES ARE BELOW
+//PLACED THE POS1 & POS2 OUTSIDE OF THE FUNCTION
+    var pos1 = 0;
+    var pos2 = 0;
+
+function startRace() {
+
+    var myVar1 = setInterval(startRace, 1000);
+    var ranNum = Math.floor(Math.random()*2);
+    randleng = Math.floor(Math.random()*5);
+
+  if(ranNum == 0){
+
+    var leng1 = pos1 + randleng;
+    pos1+=randleng;
+    document.getElementById("yellowHelmet").style.left = leng1 + "px";
+
+    } 
+
+    else if (ranNum == 1){
+
+    var leng2 = pos2 + randleng;
+    pos2+=randleng;
+    document.getElementById("chromeHelmet").style.left = leng2 + "px";
+
+  }
+  //NOW THEY JUST NEED TO STOP FLYING OFF INTO TIME AND SPACE
+
+
+if (pos1 == 1000)
+  {
+    alert("Yellow Helmet is the winner!");
+    stopHelmets();
+  }
+  else if (pos2 == 1000)
+  {
+    alert("Chrome Helmet is the winner!");
+    stopHelmets();
+  }
+  function stopHelmets(){
+  clearInterval(myVar1);
   }
 }
 
-/* This defines a function which first turns off every light and then immediately turns one on.*/
-function switchLight(lightNumber) {
-  allOff();
-  var light = LIGHTS[lightNumber];
-  light.classList.add("on");
-}
 </script>
-
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Great Oregon Duck Helmet Race!</title>
 </head>
 
 <body>
-<p>Sample text</p>
+<img style="width:150px; height:inherit; position:absolute; top:400px;" src="Images/Oregon_Lightning_Mini_Helmet.png" id="yellowHelmet"/>
+<img style="width:150px; height:inherit; position:absolute; top:600px;" src="Images/Oregon-Ducks-Helmet-psd88550.png" id="chromeHelmet"/>
+<img style="width:200px; height:inherit; position:absolute; right:0px; cursor:pointer;" src="Images/oregon-logo.jpg" id="resetButton" onclick="resetRace()"/>
+<img style="width:200px; height:inherit; cursor:pointer;" src="Images/oregon-ducks-logo_large.png" id="startButton" onclick="startRace()"/>
+
 </body>
+
 </html>
