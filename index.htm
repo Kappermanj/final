@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+
+	<meta name="description" content="HTML5 Template">
+	
+<! //css for traffic light>
+<style>
+.light {
+  height: 120px;
+  width : 120px;
+  border-radius: 50%;
+  opacity : 0.3; /* makes colors less bright by default */
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.stop {background-color: red;}
+.go {background-color: green;}
+.on {opacity: 1;}
+
+body {
+  background-color : grey;
+  text-align: center;
+  color :white;
+  font-family: Helvetica;
+}
+</style>
+	
+<! // html for traffic light>
+ <h2>Click the green light to start the race!</h2>
+
+<div onclick="switchLight(0)" class="light stop on" ></div>
+<div onclick="switchLight(2)" class="light go" ></div>
+
+</head>
+
+<body>
+<p>Sample text</p>
+</body>
+</html>
