@@ -1,0 +1,158 @@
+<!doctype html> 
+
+<html lang="en">
+<head>
+
+<style>
+  body {
+    overflow: hidden;
+  }
+
+  #smallmouth {
+    position: absolute;
+    top: 31pc;
+    width: 17pc;
+    left: -.5pc;
+  }
+
+  #largemouth {
+    position: absolute;
+    width: 15pc;
+    top: 20pc;
+	left: -.5pc;
+  }
+  
+  #smallmouthwin {
+    position: absolute;
+    right: 1pc;
+    top: 31pc;
+    display: none;
+  }
+  
+  #largemouthwin {
+    position: absolute;
+    right: 1pc;
+    top: 20pc;
+    display: none;
+  }
+
+  .finishline {
+    position: absolute;
+    right: -12pc;
+    top: 18pc;
+  }
+  
+  .light {
+  height: 120px;
+  width : 120px;
+  border-radius: 50%;
+  opacity : 0.3; /* makes colors less bright by default */
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.stop {background-color: red;}
+.slow {background-color: yellow;}
+.go {background-color: green;}
+.on {opacity: 1;}
+
+body {
+  background-color : steelblue;
+  text-align: center;
+  color :white;
+  font-family: Helvetica;
+}
+</style>
+
+<script>
+/* This line gets all the HTML elements with class="light" and assigns them to a variable called LIGHTS. */
+var LIGHTS = document.getElementsByClassName("light");
+
+/* This defines a function which turns off every light by removing the "on" class from the HTML elements.*/
+function allOff() {
+  for (var i=0; i<LIGHTS.length; i = i+1) {
+    LIGHTS[i].classList.remove("on");
+  }
+}
+
+/* This defines a function which first turns off every light and then immediately turns one on.*/
+function switchLight(lightNumber) {
+  allOff();
+  var light = LIGHTS[lightNumber];
+  light.classList.add("on");
+}
+/* This is for the race.*/
+function myMove() 
+{
+  var elemBluefish = document.getElementById("smallmouth");
+  var elemBluefishWin = document.getElementById("smallmouthwin");
+  var elemTurtle = document.getElementById("largemouth");
+  var elemTurtleWin = document.getElementById("largemouthwin");
+  
+  var posSmallmouth = 0;
+  var posLargemouth = 0;
+
+  var hasWinner = false;
+  elemSmallmouthWin.style.display = 'none';
+  elemLargemouthWin.style.display = 'none';
+  
+  var id = setInterval(frame, 5);
+  function frame()
+  {
+    if(posSmallmouth >= 350 && posLargemouth >= 350)
+    {
+      clearInterval(id);
+      return;
+    }
+
+    if(posSmallmouth < 350)
+    {
+      posSmallmouth += Math.round(Math.random()*10);
+      if(posSmallmouth >= 350)
+      {
+        posSmallmouth = 350;
+        if(!hasWinner){
+          hasWinner = true;
+          elemSmallmouthWin.style.display = 'unset';
+        }
+      }
+      elemSmallmouth.style.left = posSmallmouth + 'px';
+    }
+
+    if(posLargemouth < 350)
+    {
+      posLargemouth += Math.round(Math.random()*10);
+      if(posLargemouth >= 350)
+      {
+        posLargemouth = 350;
+        if(!hasWinner){
+          hasWinner = true;
+          elemLargemouthWin.style.display = 'unset';
+        }
+      }
+      elemLargemouth.style.left = posLargemouth + 'px';
+    }
+  }
+}
+</script>
+
+<h2>Click the green light to start the race!</h2>
+
+<div onclick="switchLight(0)" class="light stop on" ></div>
+<div onclick="switchLight(1)" class="light slow" ></div>
+<div onclick="switchLight(2)" class="light go" ></div>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Great Race!</title>
+
+<img id="smallmouth" src="http://www.fontanaguides.com/images/smallmouthbass_mount-u2449.png"> <br>
+<img id="largemouth" src="http://thumbs.gocdn.us/383_2582.zt.360.190.png">
+<img src="https://t1.rbxcdn.com/877010da8ce131dfcb3fa6a9b07fea89" class="finishline">
+
+<img id="smallmouthwin" src="http://vignette2.wikia.nocookie.net/totaldramaisland/images/5/5f/Winner.png/revision/latest?cb=20131104030406">
+<img id="largemouthwin" src="http://vignette2.wikia.nocookie.net/totaldramaisland/images/5/5f/Winner.png/revision/latest?cb=20131104030406">
+
+
+</head>
+
+</html>
