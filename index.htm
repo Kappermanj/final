@@ -1,0 +1,125 @@
+<!doctype html> 
+
+<html lang="en">
+<head>
+	
+	
+<style>
+<! css for traffic light>
+.light {
+  height: 120px;
+  width : 120px;
+  border-radius: 50%;
+  opacity : 0.3; /* makes colors less bright by default */
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.stop {background-color: red;}
+.go {background-color: green;}
+.on {opacity: 1;}
+
+body {
+  background-color : grey;
+  text-align: center;
+  color :white;
+  font-family: Helvetica;
+}
+
+  body {
+    overflow: hidden;
+  }
+
+  #bluefish {
+    position: absolute;
+    top: 31pc;
+    width: 17pc;
+    left: -.5pc;
+  }
+
+  #turtle {
+    position: absolute;
+    width: 15pc;
+    top: 20pc;
+  }
+
+  body {
+    background-image: url("http://7-themes.com/data_images/collection/4/4453887-underwater-wallpapers.jpg")
+  }
+
+  .finishline {
+    position: absolute;
+    right: -12pc;
+    top: 18pc;
+  }
+
+  #traffic-light {
+    height: 10pc;
+    width: 4pc;
+    background-color: #333;
+    border-radius: 20pc;
+    position: absolute;
+  }
+
+  .bulb {
+    height: 2pc;
+    width: 2pc;
+    background-color: #111;
+    border-radius: 50%;
+    margin: 15px auto;
+    transition: background 500ms;
+  }
+
+  #container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+  }
+
+  #animate {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: red;
+  }
+</style>
+	
+ <h2>Click the green light to start the race!</h2>
+
+<div onclick="switchLight(0)" class="light stop on" ></div>
+<div onclick="switchLight(2)" class="light go" ></div>
+
+<! java for traffic light>
+<script>
+/* This line gets all the HTML elements with class="light" and assigns them to a variable called LIGHTS. */
+var LIGHTS = document.getElementsByClassName("light");
+
+/* This defines a function which turns off every light by removing the "on" class from the HTML elements.*/
+function allOff() {
+  for (var i=0; i<LIGHTS.length; i = i+1) {
+    LIGHTS[i].classList.remove("on");
+  }
+}
+
+/* This defines a function which first turns off every light and then immediately turns one on.*/
+function switchLight(lightNumber) {
+  allOff();
+  var light = LIGHTS[lightNumber];
+  light.classList.add("on");
+}
+</script>
+
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>The Great Race!</title>
+
+<img id="smallmouth" src="http://www.fontanaguides.com/images/smallmouthbass_mount-u2449.png">
+<img id="largemouth" src="https://github.com/Kappermanj/final/blob/master/largemouth%20bass.png">
+<img src="https://github.com/Kappermanj/final/blob/master/finish%20line.png" class="finishline">
+
+</head>
+
+<body>
+<p>Sample text</p>
+</body>
+</html>
